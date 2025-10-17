@@ -6,7 +6,8 @@
 
 - **الواجهة الرئيسية**: https://3000-ijigpe794bi3pkpjagx9g-2e77fc33.sandbox.novita.ai
 - **API Health Check**: https://3000-ijigpe794bi3pkpjagx9g-2e77fc33.sandbox.novita.ai/api/health
-- **تقنيات المشروع**: Hono + Cloudflare Workers + D1 Database + Tailwind CSS
+- **تقنيات المشروع**: Hono + Cloudflare Workers + D1 Database + Tailwind CSS + TypeScript
+- **حالة النظام**: ✅ نشط وجاهز للاستخدام الكامل
 
 ## 📋 نظرة عامة
 
@@ -123,32 +124,122 @@
 - تتبع حركات المخزون
 - تنبيهات إعادة الطلب
 
-## 🔌 API Endpoints
+## 🔌 API Endpoints الكاملة
 
-### المصادقة
+### 🔐 المصادقة والتفويض
 - `POST /api/auth/login` - تسجيل الدخول
 - `GET /api/auth/me` - بيانات المستخدم الحالي
 - `POST /api/auth/change-password` - تغيير كلمة المرور
 
-### المستخدمين
+### 👥 إدارة المستخدمين
 - `GET /api/users` - قائمة المستخدمين (مع البحث والصفحات)
 - `GET /api/users/:id` - بيانات مستخدم محدد
 - `POST /api/users` - إضافة مستخدم جديد
 - `PUT /api/users/:id` - تعديل مستخدم
-- `DELETE /api/users/:id` - حذف مستخدم
+- `DELETE /api/users/:id` - حذف مستخدم (soft delete)
 - `GET /api/users/roles/list` - قائمة الأدوار
 
-### لوحة التحكم
-- `GET /api/dashboard/stats` - إحصائيات لوحة التحكم
-- `GET /api/dashboard/activities` - الأنشطة الأخيرة
-- `GET /api/dashboard/notifications` - الإشعارات
-- `PUT /api/dashboard/notifications/:id/read` - وضع علامة مقروء
+### 🏢 إدارة الأقسام
+- `GET /api/departments` - قائمة الأقسام
+- `GET /api/departments/:id` - بيانات قسم محدد
+- `POST /api/departments` - إضافة قسم جديد
+- `PUT /api/departments/:id` - تعديل قسم
+- `DELETE /api/departments/:id` - حذف قسم
 
-### ملاحظة
+### 👔 إدارة الموظفين
+- `GET /api/employees` - قائمة الموظفين
+- `GET /api/employees/:id` - بيانات موظف محدد
+- `POST /api/employees` - إضافة موظف جديد (يتم توليد كود تلقائي)
+- `PUT /api/employees/:id` - تعديل بيانات موظف
+- `DELETE /api/employees/:id` - حذف موظف
+
+### 🤝 إدارة العملاء
+- `GET /api/clients` - قائمة العملاء
+- `GET /api/clients/:id` - بيانات عميل محدد
+- `POST /api/clients` - إضافة عميل جديد (يتم توليد كود تلقائي)
+- `PUT /api/clients/:id` - تعديل بيانات عميل
+- `DELETE /api/clients/:id` - حذف عميل
+
+### 🚚 إدارة الموردين
+- `GET /api/suppliers` - قائمة الموردين
+- `GET /api/suppliers/:id` - بيانات مورد محدد
+- `POST /api/suppliers` - إضافة مورد جديد (يتم توليد كود تلقائي)
+- `PUT /api/suppliers/:id` - تعديل بيانات مورد
+- `DELETE /api/suppliers/:id` - حذف مورد
+
+### 📄 نظام الفواتير
+- `GET /api/invoices?type=sales` - قائمة فواتير المبيعات
+- `GET /api/invoices?type=purchase` - قائمة فواتير المشتريات
+- `GET /api/invoices?type=all` - جميع الفواتير
+- `GET /api/invoices/:id` - بيانات فاتورة محددة
+- `POST /api/invoices` - إنشاء فاتورة جديدة (مع بنود الفاتورة)
+- `PUT /api/invoices/:id` - تعديل فاتورة
+- `DELETE /api/invoices/:id` - إلغاء فاتورة
+
+### 📦 إدارة المخزون
+- `GET /api/inventory` - قائمة أصناف المخزون
+- `GET /api/inventory/:id` - بيانات صنف محدد
+- `POST /api/inventory` - إضافة صنف جديد (يتم توليد كود تلقائي)
+- `PUT /api/inventory/:id` - تعديل بيانات صنف
+- `DELETE /api/inventory/:id` - حذف صنف
+
+### 📅 نظام الحضور والانصراف
+- `GET /api/attendance?date=2025-01-15` - سجلات الحضور لتاريخ محدد
+- `GET /api/attendance?employee_id=1` - سجلات حضور موظف محدد
+- `POST /api/attendance` - تسجيل حضور/انصراف
+- `PUT /api/attendance/:id` - تعديل سجل حضور
+
+### 💰 نظام الرواتب
+- `GET /api/payroll` - جميع سجلات الرواتب
+- `GET /api/payroll?month=2025-01` - رواتب شهر محدد
+- `GET /api/payroll?employee_id=1` - رواتب موظف محدد
+- `POST /api/payroll` - إضافة سجل راتب جديد
+- `PUT /api/payroll/:id` - تعديل سجل راتب
+
+### 📊 نظام CRM (إدارة علاقات العملاء)
+**التفاعلات مع العملاء:**
+- `GET /api/crm/interactions` - جميع التفاعلات
+- `GET /api/crm/interactions?client_id=1` - تفاعلات عميل محدد
+- `POST /api/crm/interactions` - إضافة تفاعل جديد
+- `PUT /api/crm/interactions/:id` - تعديل تفاعل
+
+**الفرص البيعية:**
+- `GET /api/crm/opportunities?status=open` - الفرص البيعية المفتوحة
+- `GET /api/crm/opportunities?status=won` - الفرص المكتسبة
+- `GET /api/crm/opportunities?status=lost` - الفرص المفقودة
+- `POST /api/crm/opportunities` - إضافة فرصة بيعية جديدة
+- `PUT /api/crm/opportunities/:id` - تحديث فرصة بيعية
+
+### 📈 التقارير المالية
+**تقارير قائمة الدخل:**
+- `GET /api/reports/financial?type=income` - تقرير الإيرادات
+- `GET /api/reports/financial?type=income&start_date=2025-01-01&end_date=2025-12-31` - تقرير مخصص
+
+**تقارير الميزانية:**
+- `GET /api/reports/financial?type=balance` - الميزانية العمومية
+
+**تقارير المبيعات:**
+- `GET /api/reports/sales` - تقرير المبيعات الإجمالي
+- `GET /api/reports/sales?start_date=2025-01-01&end_date=2025-12-31` - تقرير مبيعات مخصص
+
+### 📊 لوحة التحكم والإحصائيات
+- `GET /api/dashboard/stats` - إحصائيات شاملة (إيرادات، أرباح، عملاء، موظفين، فواتير)
+- `GET /api/dashboard/activities` - آخر الأنشطة (Audit Logs)
+- `GET /api/dashboard/notifications` - إشعارات المستخدم
+- `PUT /api/dashboard/notifications/:id/read` - وضع علامة مقروء على إشعار
+
+### 🔒 المصادقة المطلوبة
 جميع الـ endpoints (ما عدا `/api/auth/login`) تتطلب Authorization header:
 ```
 Authorization: Bearer <token>
 ```
+
+### 📝 ملاحظات مهمة
+- جميع الـ APIs تدعم pagination للقوائم الطويلة
+- الأكواد (employee_code, client_code, etc.) يتم توليدها تلقائياً
+- جميع التواريخ بصيغة ISO 8601
+- جميع المبالغ المالية بالجنيه المصري (EGP)
+- نظام Soft Delete للبيانات الحساسة
 
 ## 🛠️ التقنيات المستخدمة
 

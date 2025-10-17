@@ -12,8 +12,6 @@ import { serveStatic } from 'hono/cloudflare-workers';
 import auth from './routes/auth';
 import users from './routes/users';
 import dashboard from './routes/dashboard';
-import departments from './routes/departments';
-import allModules from './routes/all-modules';
 
 import type { Bindings, Variables } from './types';
 
@@ -30,8 +28,6 @@ app.use('/static/*', serveStatic({ root: './public' }));
 app.route('/api/auth', auth);
 app.route('/api/users', users);
 app.route('/api/dashboard', dashboard);
-app.route('/api/departments', departments);
-app.route('/api', allModules);
 
 // Health check
 app.get('/api/health', (c) => {
@@ -270,7 +266,7 @@ app.get('/', (c) => {
                             <div class="mt-6 p-4 bg-blue-50 rounded-lg">
                                 <p class="text-sm text-gray-600 text-center">
                                     <i class="fas fa-info-circle ml-1"></i>
-                                    للتجربة استخدم: Mohamed / Mohamed@123
+                                    للتجربة استخدم: admin / Admin@123
                                 </p>
                             </div>
                         </div>

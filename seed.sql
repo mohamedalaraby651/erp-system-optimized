@@ -46,9 +46,9 @@ INSERT OR IGNORE INTO permissions (role_id, module, can_create, can_read, can_up
   (5, 'hr', 0, 1, 0, 0, 0);
 
 -- إدراج مستخدم مدير النظام الافتراضي
--- كلمة المرور: Admin@123 (مشفرة باستخدام bcrypt)
+-- كلمة المرور: Mohamed@123 (مشفرة باستخدام bcrypt)
 INSERT OR IGNORE INTO users (id, username, email, password_hash, full_name, full_name_ar, phone, role_id, is_active) VALUES 
-  (1, 'admin', 'admin@company.com', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'System Administrator', 'مدير النظام', '+201000000000', 1, 1);
+  (1, 'Mohamed', 'mohamed@company.com', '$2a$10$PKO2qp9c.LbMR9iPGzsWPu5Oj6GZaegVmxbjh/8qNSo0HlwCFJX6a', 'Mohamed', 'محمد', '+201000000000', 1, 1);
 
 -- إدراج الأقسام الافتراضية
 INSERT OR IGNORE INTO departments (id, name, name_ar, description, manager_id, is_active) VALUES 

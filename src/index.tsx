@@ -76,12 +76,15 @@ app.get('/', (c) => {
         
         <!-- Custom Styles -->
         <link href="/static/styles-enhanced.css" rel="stylesheet">
+        <link href="/static/styles-login.css" rel="stylesheet">
+        <link href="/static/styles-responsive.css" rel="stylesheet">
     </head>
     <body>
         <div id="app"></div>
         
         <!-- JavaScript Files -->
         <script src="/static/app-enhanced.js"></script>
+        <script src="/static/app-login-enhanced.js"></script>
         <script src="/static/app-rendering.js"></script>
         <script src="/static/app-forms.js"></script>
     </body>

@@ -1,0 +1,662 @@
+/* ============================================
+   Responsive Design for All Screen Sizes
+   تصميم متجاوب لجميع أحجام الشاشات
+   ============================================ */
+
+/* Mobile First Approach - Base Styles for Mobile */
+
+/* ==================== Mobile Devices (< 640px) ==================== */
+@media (max-width: 639px) {
+    /* Sidebar - Full screen on mobile */
+    .glass-sidebar {
+        position: fixed !important;
+        width: 100% !important;
+        max-width: 320px;
+        height: 100vh;
+        z-index: 9999;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    [dir="ltr"] .glass-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .glass-sidebar:not(.sidebar-hidden) {
+        transform: translateX(0) !important;
+    }
+    
+    /* Sidebar Overlay */
+    .glass-sidebar.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+    }
+    
+    /* Header */
+    .glass-header {
+        padding: 1rem !important;
+    }
+    
+    .glass-header h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Hamburger Menu Button */
+    .hamburger-menu {
+        display: block !important;
+    }
+    
+    /* Page Content */
+    #pageContent {
+        padding: 1rem !important;
+    }
+    
+    /* Cards */
+    .glass-card {
+        padding: 1rem !important;
+        border-radius: 1rem !important;
+    }
+    
+    /* Grid Layouts */
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Stat Cards - Full width on mobile */
+    .stat-card {
+        padding: 1.25rem !important;
+    }
+    
+    .stat-card h3 {
+        font-size: 1.75rem !important;
+    }
+    
+    /* Tables - Horizontal scroll */
+    .modern-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .modern-table thead th,
+    .modern-table tbody td {
+        padding: 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    /* Forms */
+    .input-group {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .modern-input {
+        padding: 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Buttons */
+    .modern-button,
+    .modern-button-secondary,
+    .modern-button-success,
+    .modern-button-danger {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .icon-button {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    
+    /* Modals */
+    #modal > div {
+        width: 95% !important;
+        max-width: none !important;
+        margin: 1rem !important;
+        max-height: 90vh !important;
+    }
+    
+    #modalContent {
+        padding: 1rem !important;
+    }
+    
+    /* Profile Pages */
+    .profile-tab {
+        padding: 0.75rem 0.5rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .info-card {
+        padding: 0.75rem !important;
+    }
+    
+    /* Chart Containers */
+    canvas {
+        max-height: 200px !important;
+    }
+    
+    /* Navigation Items */
+    .nav-item,
+    .nav-subitem {
+        padding: 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .nav-item i {
+        font-size: 1rem !important;
+    }
+    
+    /* Features Showcase */
+    .features-showcase {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+    }
+    
+    .feature-item {
+        padding: 1rem !important;
+    }
+    
+    /* Footer */
+    .login-footer {
+        font-size: 0.75rem !important;
+        padding: 1rem !important;
+    }
+    
+    .footer-links {
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+    }
+    
+    /* Badge & Tags */
+    .badge {
+        padding: 0.125rem 0.5rem !important;
+        font-size: 0.625rem !important;
+    }
+    
+    /* Steps */
+    .step-number {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Action Buttons Group */
+    .flex.space-x-2,
+    .flex.space-x-4 {
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+}
+
+/* ==================== Tablets (640px - 1023px) ==================== */
+@media (min-width: 640px) and (max-width: 1023px) {
+    /* Sidebar - Collapsible on tablet */
+    .glass-sidebar {
+        width: 16rem;
+    }
+    
+    /* Content Area */
+    main {
+        margin-right: 0;
+    }
+    
+    [dir="ltr"] main {
+        margin-left: 0;
+    }
+    
+    /* Grid Layouts - 2 columns */
+    .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    .grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Cards */
+    .glass-card {
+        padding: 1.25rem;
+    }
+    
+    /* Tables */
+    .modern-table thead th,
+    .modern-table tbody td {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Forms */
+    .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Stat Cards */
+    .stat-card h3 {
+        font-size: 2rem;
+    }
+    
+    /* Profile Tabs */
+    .profile-tab {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* ==================== Small Desktops (1024px - 1279px) ==================== */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    /* Sidebar */
+    .glass-sidebar {
+        width: 18rem;
+    }
+    
+    /* Content Area */
+    main {
+        margin-right: 18rem;
+    }
+    
+    [dir="ltr"] main {
+        margin-left: 18rem;
+        margin-right: 0;
+    }
+    
+    /* Grid Layouts - 3 columns */
+    .grid-cols-4 {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* Tables */
+    .modern-table {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== Large Desktops (1280px+) ==================== */
+@media (min-width: 1280px) {
+    /* Sidebar */
+    .glass-sidebar {
+        width: 20rem;
+    }
+    
+    /* Content Area */
+    main {
+        margin-right: 20rem;
+    }
+    
+    [dir="ltr"] main {
+        margin-left: 20rem;
+        margin-right: 0;
+    }
+    
+    /* Maximum Content Width */
+    #pageContent {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    /* Grid Layouts - Full 4 columns */
+    .grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    /* Larger Modals */
+    #modal > div {
+        max-width: 900px;
+    }
+}
+
+/* ==================== Extra Large Screens (1536px+) ==================== */
+@media (min-width: 1536px) {
+    /* Content Area - Even more spacing */
+    #pageContent {
+        max-width: 1600px;
+        padding: 2rem;
+    }
+    
+    /* Larger Cards */
+    .glass-card {
+        padding: 2rem;
+    }
+    
+    /* Stat Cards - Larger text */
+    .stat-card h3 {
+        font-size: 2.5rem;
+    }
+    
+    /* Tables - More comfortable spacing */
+    .modern-table thead th,
+    .modern-table tbody td {
+        padding: 1.25rem;
+    }
+}
+
+/* ==================== Touch Device Optimizations ==================== */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger Touch Targets */
+    button,
+    a,
+    .nav-item,
+    .nav-subitem,
+    .icon-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove Hover Effects on Touch */
+    .nav-item:hover,
+    .nav-subitem:hover,
+    .modern-button:hover {
+        transform: none !important;
+    }
+    
+    /* Active States Instead */
+    .nav-item:active,
+    .modern-button:active {
+        transform: scale(0.98);
+    }
+    
+    /* Disable Tooltips on Touch */
+    [title]:hover::after {
+        display: none;
+    }
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+    /* Hide UI Elements */
+    .glass-sidebar,
+    .glass-header,
+    button,
+    .nav-item,
+    .icon-button,
+    .hamburger-menu {
+        display: none !important;
+    }
+    
+    /* Full Width Content */
+    main {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    #pageContent {
+        padding: 1rem !important;
+    }
+    
+    /* Black & White */
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+    
+    /* Page Breaks */
+    .glass-card {
+        page-break-inside: avoid;
+        border: 1px solid #000;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Tables */
+    .modern-table {
+        border: 1px solid #000;
+    }
+    
+    .modern-table thead {
+        background: #f0f0f0 !important;
+    }
+    
+    .modern-table thead th,
+    .modern-table tbody td {
+        border: 1px solid #000;
+    }
+}
+
+/* ==================== Landscape Mobile (< 640px height) ==================== */
+@media (max-height: 640px) and (orientation: landscape) {
+    /* Reduce vertical padding */
+    .glass-card {
+        padding: 1rem !important;
+    }
+    
+    .login-header {
+        margin-bottom: 1rem !important;
+    }
+    
+    .logo-circle {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .logo-circle i {
+        font-size: 2rem !important;
+    }
+    
+    .login-title {
+        font-size: 1.5rem !important;
+    }
+    
+    .login-subtitle {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Compact Forms */
+    .login-form {
+        gap: 1rem !important;
+    }
+    
+    .login-input {
+        padding: 0.625rem !important;
+    }
+    
+    .login-button {
+        padding: 0.875rem !important;
+    }
+    
+    /* Hide Less Important Elements */
+    .features-showcase,
+    .demo-info {
+        display: none;
+    }
+}
+
+/* ==================== Accessibility Improvements ==================== */
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .glass-card,
+    .glass-sidebar,
+    .modern-button {
+        border: 2px solid currentColor !important;
+    }
+    
+    .nav-item:hover,
+    .nav-item.active {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .shape {
+        animation: none !important;
+    }
+    
+    .animated-shapes {
+        display: none;
+    }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --bg-primary: #111827;
+        --bg-secondary: #1F2937;
+        --text-primary: #F9FAFB;
+        --text-secondary: #9CA3AF;
+        --border-color: #374151;
+        --glass-bg: rgba(31, 41, 55, 0.95);
+    }
+}
+
+/* ==================== Custom Utility Classes for Responsive ==================== */
+
+/* Hide on Mobile */
+@media (max-width: 639px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+/* Hide on Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+    .hide-on-tablet {
+        display: none !important;
+    }
+}
+
+/* Hide on Desktop */
+@media (min-width: 1024px) {
+    .hide-on-desktop {
+        display: none !important;
+    }
+}
+
+/* Show Only on Mobile */
+@media (min-width: 640px) {
+    .show-on-mobile-only {
+        display: none !important;
+    }
+}
+
+/* Responsive Text Sizes */
+@media (max-width: 639px) {
+    .responsive-text-sm {
+        font-size: 0.875rem !important;
+    }
+    
+    .responsive-text-base {
+        font-size: 1rem !important;
+    }
+    
+    .responsive-text-lg {
+        font-size: 1.125rem !important;
+    }
+    
+    .responsive-text-xl {
+        font-size: 1.25rem !important;
+    }
+    
+    .responsive-text-2xl {
+        font-size: 1.5rem !important;
+    }
+    
+    .responsive-text-3xl {
+        font-size: 1.875rem !important;
+    }
+}
+
+/* Responsive Spacing */
+@media (max-width: 639px) {
+    .responsive-p-sm {
+        padding: 0.5rem !important;
+    }
+    
+    .responsive-p-md {
+        padding: 1rem !important;
+    }
+    
+    .responsive-p-lg {
+        padding: 1.5rem !important;
+    }
+    
+    .responsive-m-sm {
+        margin: 0.5rem !important;
+    }
+    
+    .responsive-m-md {
+        margin: 1rem !important;
+    }
+    
+    .responsive-m-lg {
+        margin: 1.5rem !important;
+    }
+}
+
+/* Responsive Gaps */
+@media (max-width: 639px) {
+    .responsive-gap-sm {
+        gap: 0.5rem !important;
+    }
+    
+    .responsive-gap-md {
+        gap: 1rem !important;
+    }
+    
+    .responsive-gap-lg {
+        gap: 1.5rem !important;
+    }
+}
+
+/* ==================== Safe Area Insets (for notched devices) ==================== */
+@supports (padding: max(0px)) {
+    .glass-header,
+    .glass-sidebar,
+    .login-container {
+        padding-top: max(1rem, env(safe-area-inset-top));
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
+
+/* ==================== Flexible Images ==================== */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ==================== Overflow Handling ==================== */
+.overflow-auto {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ==================== Z-Index Management ==================== */
+.z-sidebar {
+    z-index: 1000;
+}
+
+.z-header {
+    z-index: 900;
+}
+
+.z-modal {
+    z-index: 9999;
+}
+
+.z-dropdown {
+    z-index: 1100;
+}
+
+.z-toast {
+    z-index: 10000;
+}

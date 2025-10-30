@@ -17,55 +17,9 @@ function render() {
     }
 }
 
-// Login Page
+// Login Page - Use Enhanced Version
 function renderLoginPage() {
-    return `
-        <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 animated-gradient">
-            <div class="glass-card w-full max-w-md m-4">
-                <div class="text-center mb-8">
-                    <div class="inline-block p-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-4 shadow-2xl animate-float">
-                        <i class="fas fa-building text-6xl text-white"></i>
-                    </div>
-                    <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-2">نظام ERP المتكامل</h1>
-                    <p class="text-gray-600 dark:text-gray-300">إدارة شاملة لجميع عمليات الشركة</p>
-                </div>
-                
-                <form id="loginForm" class="space-y-6" onsubmit="event.preventDefault(); login(
-                    document.getElementById('username').value,
-                    document.getElementById('password').value
-                );">
-                    <div class="input-group">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-semibold">
-                            <i class="fas fa-user ml-2 text-blue-600"></i>اسم المستخدم
-                        </label>
-                        <input type="text" id="username" 
-                            class="modern-input"
-                            placeholder="Mohamed" required>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label class="block text-gray-700 dark:text-gray-300 mb-2 font-semibold">
-                            <i class="fas fa-lock ml-2 text-blue-600"></i>كلمة المرور
-                        </label>
-                        <input type="password" id="password" 
-                            class="modern-input"
-                            placeholder="Mohamed@123" required>
-                    </div>
-                    
-                    <button type="submit" class="modern-button w-full">
-                        <i class="fas fa-sign-in-alt ml-2"></i>تسجيل الدخول
-                    </button>
-                </form>
-                
-                <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
-                    <p class="text-sm text-gray-700 dark:text-gray-300 text-center">
-                        <i class="fas fa-info-circle ml-1 text-blue-600"></i>
-                        <span class="font-semibold">بيانات التجربة:</span> Mohamed / Mohamed@123
-                    </p>
-                </div>
-            </div>
-        </div>
-    `;
+    return renderEnhancedLoginPage();
 }
 
 // Main Layout

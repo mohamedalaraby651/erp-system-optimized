@@ -625,4 +625,54 @@ function getPageTitle(page) {
     return page;
 }
 
-// Continue in next part...
+// ============================================
+// Main Render Function
+// ============================================
+function render() {
+    const app = document.getElementById('app');
+    
+    if (!state.token) {
+        // Show login page
+        app.innerHTML = renderLoginPage();
+        return;
+    }
+    
+    // Show main application
+    app.innerHTML = `
+        ${renderSidebar()}
+        <div class="main-content">
+            ${renderHeader()}
+            <div id="pageContent" class="p-6">
+                <!-- Dynamic content loaded here -->
+            </div>
+        </div>
+        ${renderNotificationCenter()}
+    `;
+    
+    // Navigate to default page
+    if (state.currentPage === 'login') {
+        state.currentPage = 'dashboard';
+    }
+    navigateTo(state.currentPage);
+    
+    // Start notifications polling
+    startNotificationPolling();
+}
+
+// ============================================
+// Initialize Application
+// ============================================
+function initApp() {
+    // Initialize theme
+    initTheme();
+    
+    // Render application
+    render();
+}
+
+// Start application when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}

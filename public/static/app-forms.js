@@ -737,8 +737,4 @@ function showNotifications() {
     openModal('الإشعارات', content);
 }
 
-// Initialize on Document Ready
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    render();
-});
+// Forms module loaded - initialization handled by app-enhanced.js

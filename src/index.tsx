@@ -6,6 +6,8 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';
+import { compress } from 'hono/compress';
+import { cache } from 'hono/cache';
 import { serveStatic } from 'hono/cloudflare-workers';
 
 // Import routes
@@ -19,9 +21,22 @@ import type { Bindings, Variables } from './types';
 
 const app = new Hono<{ Bindings: Bindings; Variables: Variables }>();
 
-// Middleware
+// Performance Middleware
+app.use('*', compress({
+  encoding: 'gzip'
+}));
+
+// Logging Middleware
 app.use('*', logger());
+
+// CORS Middleware
 app.use('/api/*', cors());
+
+// Cache Middleware for Static Assets
+app.use('/static/*', cache({
+  cacheName: 'static-assets-v1',
+  cacheControl: 'public, max-age=31536000, immutable' // 1 year
+}));
 
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }));
@@ -33,12 +48,36 @@ app.route('/api/dashboard', dashboard);
 app.route('/api/departments', departments);
 app.route('/api', allModules);
 
+// Performance Headers Middleware
+app.use('*', async (c, next) => {
+  await next();
+  
+  // Security Headers
+  c.header('X-Content-Type-Options', 'nosniff');
+  c.header('X-Frame-Options', 'DENY');
+  c.header('X-XSS-Protection', '1; mode=block');
+  c.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Performance Headers
+  c.header('X-DNS-Prefetch-Control', 'on');
+  
+  // Cache control for HTML
+  if (c.req.path === '/' || c.req.path.endsWith('.html')) {
+    c.header('Cache-Control', 'no-cache, must-revalidate');
+  }
+});
+
 // Health check
 app.get('/api/health', (c) => {
   return c.json({ 
     success: true, 
     message: 'نظام إدارة الشركات المتكامل يعمل بنجاح',
-    timestamp: new Date().toISOString() 
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime ? Math.floor(process.uptime()) : 0,
+    memory: process.memoryUsage ? {
+      used: Math.floor(process.memoryUsage().heapUsed / 1024 / 1024) + 'MB',
+      total: Math.floor(process.memoryUsage().heapTotal / 1024 / 1024) + 'MB'
+    } : null
   });
 });
 
@@ -81,6 +120,14 @@ app.get('/', (c) => {
     </head>
     <body>
         <div id="app"></div>
+        
+        <!-- Performance Optimization Modules - Load First -->
+        <script src="/static/performance-optimization.js"></script>
+        <script src="/static/module-loader.js"></script>
+        <script src="/static/app-dashboard-optimized.js"></script>
+        
+        <!-- Service Worker Registration -->
+        <script src="/static/sw-register.js"></script>
         
         <!-- JavaScript Files -->
         <script src="/static/app-enhanced.js"></script>

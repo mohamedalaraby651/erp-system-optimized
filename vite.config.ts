@@ -10,5 +10,19 @@ export default defineConfig({
       adapter,
       entry: 'src/index.tsx'
     })
-  ]
+  ],
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    strictPort: true
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: 3000,
+    strictPort: true,
+    allowedHosts: [
+      'localhost',
+      '3000-ijigpe794bi3pkpjagx9g-2e77fc33.sandbox.novita.ai'
+    ]
+  }
 })

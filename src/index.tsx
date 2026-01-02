@@ -113,10 +113,24 @@ app.get('/', (c) => {
         <!-- Axios -->
         <script src="https://cdn.jsdelivr.net/npm/axios@1.6.0/dist/axios.min.js"></script>
         
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="/manifest.json">
+        
+        <!-- iOS Meta Tags -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="نظام ERP">
+        <link rel="apple-touch-icon" href="/static/icons/icon-192x192.png">
+        
+        <!-- Android Meta Tags -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#1f2937">
+        
         <!-- Custom Styles -->
         <link href="/static/styles-enhanced.css" rel="stylesheet">
         <link href="/static/styles-login.css" rel="stylesheet">
         <link href="/static/styles-responsive.css" rel="stylesheet">
+        <link href="/static/styles-mobile-optimized.css" rel="stylesheet">
     </head>
     <body>
         <div id="app"></div>
@@ -125,6 +139,9 @@ app.get('/', (c) => {
         <script src="/static/performance-optimization.js"></script>
         <script src="/static/module-loader.js"></script>
         <script src="/static/app-dashboard-optimized.js"></script>
+        
+        <!-- Mobile Enhancements - Load First for Mobile -->
+        <script src="/static/mobile-enhancements.js"></script>
         
         <!-- Service Worker Registration -->
         <script src="/static/sw-register.js"></script>
